@@ -1,0 +1,159 @@
+/* Full screen black void */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: black;
+}
+
+/* Subtle moving dark gradient */
+.background {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #111 0%, #000 60%);
+  animation: backgroundMove 20s infinite linear;
+}
+
+@keyframes backgroundMove {
+  from {
+    transform: translate(-10%, -10%);
+  }
+  to {
+    transform: translate(-15%, -15%);
+  }
+}
+
+/* Container */
+.stones-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Individual stones */
+.stone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 26px;
+  height: 32px;
+  border-radius: 55% 45% 60% 40% / 50% 60% 40% 50%;
+
+  opacity: 0;
+
+  transform: translate(var(--x), var(--y)) scale(1);
+  transition: transform 4s cubic-bezier(0.22, 1, 0.36, 1);
+  
+
+  animation: fadeIn 1s ease forwards;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.3) 25%, transparent 40%),
+    radial-gradient(circle at center, currentColor 30%, rgba(0,0,0,0.4) 90%);
+
+  box-shadow:
+    0 0 20px currentColor,
+    0 0 45px currentColor,
+    inset 0 0 15px rgba(255,255,255,0.6),
+    inset 0 0 25px rgba(0,0,0,0.5);
+}
+
+/* Balanced random positions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Appear animation */
+@keyframes fadeInScale {
+  to {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+}
+
+/* Soft breathing pulse */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+.stone.converge {
+  transform: translate(0, 0) scale(1.4);
+}
+.stone.shrink {
+  transform: translate(0, 0) scale(0);
+  transition: transform 1s ease-in;
+}
+.main-page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.main-page.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.left {
+  width: 50%;
+  color: white;
+}
+
+.left h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.left p {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.right {
+  width: 55%;
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+}
+
+.right img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+  transform: scale(1.15);
+  filter: brightness(0.85);
+
+  transition:
+    opacity 1.2s ease-in-out,
+    transform 8s ease-in-out,
+    filter 1.2s ease-in-out;
+
+  border-radius: 16px;
+}
+
+.right img.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: brightness(1);
+}
