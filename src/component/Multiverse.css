@@ -1,0 +1,138 @@
+.cards-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: radial-gradient(circle at top, #0b0c10, #1c1c1c);
+  color: white;
+  font-family: "Orbitron", sans-serif;
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 10px #8a2be2;
+}
+
+.section-subtitle {
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+}
+
+.card {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 200px;
+  height: 300px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.card-front {
+  background: rgba(30, 30, 30, 0.8);
+}
+
+.card-front img {
+  width: 150px;
+  height: 150px;
+  border-radius: 20%;
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px #8a2be2;
+}
+
+.card-front h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.power-bar {
+  width: 80%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.power-fill {
+  height: 100%;
+  background: #8a2be2;
+  border-radius: 3px;
+}
+
+/* Back image at top-left corner */
+/* Card back image at top-left */
+.card-back {
+  position: relative; /* allows absolute positioning for back-img */
+  background: black;
+  color: #fff;
+  transform: rotateY(180deg);
+  padding: 15px;
+}
+
+.card-back .back-img {
+  position: absolute;
+  top: 0;       /* remove extra spacing */
+  left: 10;      /* align to top-left corner */
+  width: 60%;  /* fill the card width if you want */
+  height: auto; /* keep aspect ratio */
+  max-height: 150px; /* optional: limit height */
+  border-radius: 0; /* remove white-corner rounding if you want */
+  object-fit: cover; /* scale and crop to fit card */
+  box-shadow: none;  /* optional: remove glow if overlapping card */
+  background: transparent; /* ensure no white background shows */
+}
+
+/* Shift text to the right so it doesn't overlap the image */
+.card-back h3,
+.card-back p {
+    margin-top:150px;
+/* adjust based on back-img width + padding */
+}
+
+.card-back h3 {
+  margin-bottom: 5px;
+}
+
+.card-back p {
+  margin: 4px 0;
+}
+
+.card-back .catchphrase {
+  margin-top: 10px;
+  font-style: italic;
+  color: #ff80ff;
+}
+
+.card:hover .card-front {
+  transform: scale(1.05) rotateX(2deg) rotateY(2deg);
+}
+/* Character image on card back */
